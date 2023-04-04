@@ -8,6 +8,7 @@
 package org.phoebus.pv.opva;
 
 import java.text.FieldPosition;
+import java.text.Format;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.time.Instant;
@@ -147,7 +148,7 @@ class Decoders
     /** @param printfFormat Format from NTScalar display.format
      *  @return Suitable NumberFormat
      */
-    private static NumberFormat createNumberFormat(final String printfFormat)
+    private static Format createNumberFormat(final String printfFormat)
     {
         if (printfFormat == null ||
             printfFormat.trim().isEmpty() ||
@@ -213,7 +214,7 @@ class Decoders
     public static Display decodeDisplay(final PVStructure struct) throws Exception
     {
         String units;
-        NumberFormat format;
+        Format format;
         Range display, control, alarm, warn;
 
         // Decode display_t display

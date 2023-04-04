@@ -7,7 +7,7 @@
  ******************************************************************************/
 package org.csstudio.archive.writer.rdb;
 
-import java.text.NumberFormat;
+import java.text.Format;
 import java.util.List;
 
 import org.epics.vtype.Display;
@@ -44,8 +44,8 @@ public class MetaDataHelper
             return false;
 
         // Compare formats by result on some test value. Not perfect.
-        final NumberFormat format = display.getFormat();
-        final NumberFormat format2 = other.getFormat();
+        final Format format = display.getFormat();
+        final Format format2 = other.getFormat();
         // Formatting is expensive, so hopefully we catch the same format via equality
         if (format == format2)
             return true;

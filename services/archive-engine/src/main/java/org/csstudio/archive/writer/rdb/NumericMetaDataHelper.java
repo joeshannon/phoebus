@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.Format;
 import java.text.NumberFormat;
 
 import org.epics.vtype.Display;
@@ -67,11 +68,11 @@ public class NumericMetaDataHelper
             setDoubleOrNull(insert, 5, meta.getWarningRange().getMaximum());
             setDoubleOrNull(insert, 6, meta.getAlarmRange().getMinimum());
             setDoubleOrNull(insert, 7, meta.getAlarmRange().getMaximum());
-            final NumberFormat format = meta.getFormat();
-            if (format == null)
-                insert.setInt(8, 0);
+            final Format format = meta.getFormat();
+            if (format instanceof NumberFormat)
+            	insert.setInt(8, ((NumberFormat) format).getMinimumFractionDigits());
             else
-                insert.setInt(8, format.getMinimumFractionDigits());
+            	insert.setInt(8, 0);
             // Oracle schema has NOT NULL units...
             String units = meta.getUnit();
             if (units == null  ||  units.length() < 1)

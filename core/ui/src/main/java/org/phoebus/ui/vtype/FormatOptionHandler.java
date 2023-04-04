@@ -9,6 +9,7 @@ package org.phoebus.ui.vtype;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.Format;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +65,7 @@ public class FormatOptionHandler
         {
             if (value instanceof VNumber)
             {
-                final NumberFormat format = ( (VNumber) value ).getDisplay().getFormat();
+                final Format format = ( (VNumber) value ).getDisplay().getFormat();
                 if (format instanceof DecimalFormat)
                     precision = ( (DecimalFormat) format ).getMaximumFractionDigits();
             }
@@ -83,10 +84,13 @@ public class FormatOptionHandler
      *  @param show_units Include units?
      *  @return Formatted value
      */
-    public static String format(final VType value, final FormatOption option,
+    public static String format(final VType value, FormatOption option,
                                 int precision, final boolean show_units)
     {
 
+    	//if (option == FormatOption.DEFAULT) {
+    	//	option = FormatOption.HEX;
+    	//}
         precision = actualPrecision(value, precision);
 
         if (value == null)

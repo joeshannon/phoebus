@@ -30,7 +30,6 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
-import org.w3c.dom.html.HTMLAnchorElement;
 
 import java.net.URI;
 import java.util.logging.Level;
@@ -78,13 +77,14 @@ public class HyperLinkRedirectListener implements ChangeListener<State>, EventLi
 
     @Override
     public void handleEvent(Event event) {
-        HTMLAnchorElement anchorElement = (HTMLAnchorElement) event.getCurrentTarget();
-        String href = anchorElement.getHref();
-        try {
-            ApplicationService.createInstance("web", new URI(href));
-            event.preventDefault();
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Failed to launch WebBrowserApplication", e);
-        }
+    	System.err.println("doing nothing");
+//        HTMLAnchorElement anchorElement = (HTMLAnchorElement) event.getCurrentTarget();
+//        String href = anchorElement.getHref();
+//        try {
+//            ApplicationService.createInstance("web", new URI(href));
+//            event.preventDefault();
+//        } catch (Exception e) {
+//            LOGGER.log(Level.SEVERE, "Failed to launch WebBrowserApplication", e);
+//        }
     }
 }

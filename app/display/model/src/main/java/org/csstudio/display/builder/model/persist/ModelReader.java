@@ -28,6 +28,7 @@ import org.csstudio.display.builder.model.WidgetDescriptor;
 import org.csstudio.display.builder.model.WidgetFactory;
 import org.csstudio.display.builder.model.WidgetFactory.WidgetTypeException;
 import org.csstudio.display.builder.model.widgets.PlaceholderWidget;
+import org.csstudio.display.builder.model.widgets.TextUpdateWidget;
 import org.phoebus.framework.persistence.XMLUtil;
 import org.w3c.dom.Element;
 
@@ -325,7 +326,9 @@ public class ModelReader
                 widget.setConfiguratorResult(configurator);
                 if (! configurator.isClean())
                     ++widget_errors_during_parse;
-
+				if (widget instanceof TextUpdateWidget) {
+					System.err.println(((TextUpdateWidget) widget).propFormat());
+				}
                 return widget;
             }
         }

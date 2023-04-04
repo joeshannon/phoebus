@@ -7,7 +7,7 @@
  ******************************************************************************/
 package org.phoebus.applications.pvtable.model;
 
-import java.text.NumberFormat;
+import java.text.Format;
 import java.util.stream.Collectors;
 
 import org.epics.util.array.IteratorNumber;
@@ -53,7 +53,7 @@ public class VTypeFormatter
         if (value instanceof VNumber)
         {
             final VNumber number = (VNumber) value;
-            final NumberFormat format = number.getDisplay().getFormat();
+            final Format format = number.getDisplay().getFormat();
             final String data;
             if (format != null)
                 data = format.format(number.getValue().doubleValue());
